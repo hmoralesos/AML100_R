@@ -1,6 +1,6 @@
 ---
-title: "A Minimal Book Example"
-author: "Yihui Xie"
+title: "Notes on R for AML100"
+author: "Jordan T. Bates"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 output: bookdown::gitbook
