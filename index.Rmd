@@ -13,6 +13,11 @@ description: "Notes on R for the course AML100 at Arizona State University."
 
 ---
 
+<!--- 
+To publish to bookdown.org:
+> bookdown::publish_book(render = "local", account="jtbates", server="bookdown.org") 
+--->
+
 # Preface {-}
 
 These notes introduce the basics of the programming language R as needed for the course AML100.

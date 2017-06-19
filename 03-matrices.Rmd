@@ -1,0 +1,112 @@
+# Matrices
+
+We use the `matrix` function to create a matrix from a vector of values.
+
+    ```{r mat_define}
+    A <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=FALSE)
+    A
+    B <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=TRUE)
+    B
+    ```
+
+<!---
+\[
+A =
+```{r mat_disp, echo=FALSE, results='asis'}
+bmatrix = function(x, digits=NULL, ...) {
+  library(xtable)
+  default_args = list(include.colnames=FALSE, only.contents=TRUE,
+                      include.rownames=FALSE, hline.after=NULL, comment=FALSE,
+                      print.results=FALSE)
+  passed_args = list(...)
+  calling_args = c(list(x=xtable(x, digits=digits)),
+                   c(passed_args,
+                     default_args[setdiff(names(default_args), names(passed_args))]))
+  cat("\\begin{bmatrix}\n",
+      do.call(print.xtable, calling_args),
+      "\\end{bmatrix}\n")
+}
+bmatrix(A, digits=0)
+```
+\]
+--->
+
+We can extract elements of the matrix with square brackets.
+Look up the documentation with `?"["`.
+We can extract elements by row
+```{r mat_index_row}
+A[1,]
+A[2,]
+```
+
+by column
+
+```{r mat_index_col}
+A[,1]
+A[,2]
+```
+
+or by element
+
+```{r mat_index_elem}
+A[1,2]
+A[2,1]
+```
+
+We can also use square brackets to replace columns, rows, or elements of a matrix.
+
+```{r mat_replace}
+A[1,] <- c(1, 2)
+A
+A[,2] <- c(2, 1)
+A
+A[2,1] <- -1
+A
+```
+
+The arithmetic operators perform elementwise operations for matrices, as with vectors.
+```{r mat_arithmetic}
+A + B
+A - B
+A * B
+A / B
+A ^ B
+```
+
+To perform matrix multiplication, we use the `%*%` operator.
+```{r mat_mult}
+A %*% B
+```
+
+To find the inverse of a matrix, we use the `solve` function.
+```{r mat_inverse}
+solve(A)
+```
+
+We also use the `solve` function to solve the equation $Ax = b$.
+```{r mat_solve}
+solve(A, b=c(3,9))
+```
+
+To find the determinant of a matrix, we use the `det` function.
+```{r mat_determinant}
+det(A)
+```
+
+We can write functions to extract and replace a general matrix diagonal.
+```{r mat_gendiag}
+gen.diag <- function(A, k) A[row(A) == col(A) - k]
+`gen.diag<-` <- function(A, k, value) {
+  A[row(A) == col(A) - k] <- value
+  A
+}
+```
+
+Let's test these functions for extracting and replacing a general matrix diagonal.
+```{r mat_gendiag_test}
+C <- matrix(c(1,0,-1,8,1,0,-1,9,-2), nrow=3, byrow=TRUE)
+C
+gen.diag(C, -1)
+gen.diag(C, -1) <- c(2,1)
+C
+```
