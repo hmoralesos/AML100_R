@@ -9,28 +9,6 @@ B <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=TRUE)
 B
 ```
 
-<!---
-\[
-A =
-```{r mat_disp, echo=FALSE, results='asis'}
-bmatrix = function(x, digits=NULL, ...) {
-  library(xtable)
-  default_args = list(include.colnames=FALSE, only.contents=TRUE,
-                      include.rownames=FALSE, hline.after=NULL, comment=FALSE,
-                      print.results=FALSE)
-  passed_args = list(...)
-  calling_args = c(list(x=xtable(x, digits=digits)),
-                   c(passed_args,
-                     default_args[setdiff(names(default_args), names(passed_args))]))
-  cat("\\begin{bmatrix}\n",
-      do.call(print.xtable, calling_args),
-      "\\end{bmatrix}\n")
-}
-bmatrix(A, digits=0)
-```
-\]
---->
-
 We can extract elements of the matrix with square brackets.
 Look up the documentation with `?"["`.
 We can extract elements by row
