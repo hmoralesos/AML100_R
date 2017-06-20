@@ -2,12 +2,12 @@
 
 We use the `matrix` function to create a matrix from a vector of values.
 
-    ```{r mat_define}
-    A <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=FALSE)
-    A
-    B <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=TRUE)
-    B
-    ```
+```{r mat_define}
+A <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=FALSE)
+A
+B <- matrix(c(1,2,4,8), nrow=2, ncol=2, byrow=TRUE)
+B
+```
 
 <!---
 \[
@@ -93,9 +93,13 @@ To find the determinant of a matrix, we use the `det` function.
 det(A)
 ```
 
-We can write functions to extract and replace a general matrix diagonal.
+We can write functions to extract a general matrix diagonal
 ```{r mat_gendiag}
 gen.diag <- function(A, k) A[row(A) == col(A) - k]
+```
+
+and to replace a general matrix diagonal
+```{r mat_gendiagassg}
 `gen.diag<-` <- function(A, k, value) {
   A[row(A) == col(A) - k] <- value
   A
